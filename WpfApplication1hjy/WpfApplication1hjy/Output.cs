@@ -19,11 +19,15 @@ namespace WpfApplication1hjy
             Filename = filename;
             workbook = new Workbook();
             worksheet = new Worksheet("Output");
+
+            for (int i = 0; i < 100; i++)
+                worksheet.Cells[i, 0] = new Cell("");
         }
 
         public static void Save()
         {
             workbook.Worksheets.Add(worksheet);
+
             workbook.Save(Filename);
         }
 

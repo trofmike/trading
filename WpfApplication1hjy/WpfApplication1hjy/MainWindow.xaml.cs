@@ -22,7 +22,7 @@ namespace WpfApplication1hjy
     {
         private Bar prevMonth;
         private Bar currMonth;
-        bool notFirstMonth;
+        bool notFirstMonth, wasTrade;
         EntryBar entrybar;
         int prevDirection;
         public int entrymonth;
@@ -43,18 +43,23 @@ namespace WpfApplication1hjy
                 currMonth.High = Double.MinValue;
                 currMonth.Low = Double.MaxValue;
                 prevMonth.Month = 1;
+                prevMonth.Year = 99;
+                wasTrade = false;
+                notFirstMonth = false;
                 while (!sr.EndOfStream)
                 {
                     var line = sr.ReadLine();
                     var edesc = line.Split(',');
                     var bar = new Bar(edesc[0], edesc[1], edesc[2], edesc[3], edesc[4], edesc[5], edesc[6]);
-                    if (bar.Date.Month > prevMonth.Month)                            // проверяем изменился ли месяц
+                    if (bar.Date.Month > prevMonth.Month || bar.Date.Year > prevMonth.Year)                            // проверяем изменился ли месяц
                     {
                         prevMonth.High = currMonth.High;
                         prevMonth.Low = currMonth.Low;
                         //prevmonth = bar.Date.Month;
                         prevMonth.Month = bar.Date.Month;
+                        prevMonth.Year = bar.Date.Year;
                         notFirstMonth = true;
+                        wasTrade = false;
                         currMonth.High = bar.High;
                         currMonth.Low = bar.Low;
                     }
@@ -63,23 +68,25 @@ namespace WpfApplication1hjy
                         if (bar.High > currMonth.High) currMonth.High = bar.High; // отследиваем хай текущего месяца
                         if (bar.Low < currMonth.Low) currMonth.Low = bar.Low; // отслеживаем лоу текущего месяца
 
-                        if (notFirstMonth)
+                        if (notFirstMonth && !wasTrade)
                         {
                             double currMonthHighLow = currMonth.High - currMonth.Low; // считаем диапазон текущего месяца
-                            double prevMonthHighLow = prevMonth.High - prevMonth.Low; // считаем диапазон текущего месяца
-                            if (entrymonth != bar.Date.Month) // вот это добавил   *****
-                            {
+                            double prevMonthHighLow = prevMonth.High - prevMonth.Low; // считаем диапазон предыдущего месяца
+                            //if (entrymonth != bar.Date.Month) // вот это добавил   *****
+                            //{
                                 if (currMonthHighLow > prevMonthHighLow)
                                 {
-                                    entrymonth = bar.Date.Month; // и это****
+                                    //entrymonth = bar.Date.Month; // и это****
+                                    wasTrade = true;
                                     entrybar = new EntryBar(bar, Math.Sign(Math.Abs(currMonth.Low - bar.Close) - Math.Abs(currMonth.High - bar.Close)));
                                     if (entrybar.Direction != prevDirection)
                                     {   //if (энтрибарманф != бар.дэйт.манф)      энтрибарманф - это типа переменная, в которую записывается месяц последнего выведенного в эксель ентрибара
                                         prevDirection = entrybar.Direction;
+                                        Console.WriteLine("close:" + entrybar.Close + " dir:" + entrybar.Direction + " date:" + bar.Date); 
                                         Output.Add(entrybar);
                                     }
                                 }
-                            }
+                            //}
                             // вот тут типа можно энтрибарманф = энтрибар.дэйт.манф         хз))
                         }
                     }
@@ -87,6 +94,7 @@ namespace WpfApplication1hjy
                     // MessageBox.Show("хуйпизда");
                     //TODO: посчитать диапазон одного месяца,потом определить смену месяца и положить каррент манф в прев манф 
                 }
+                Console.WriteLine("Вышли из цикла");
                 Output.Save();
             }
 
