@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApplication1hjy", "WpfApplication1hjy\WpfApplication1hjy.csproj", "{12315B11-2042-4ED3-81CD-19C78EE08915}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A8A2E1FD-7531-43DE-A79A-00CFC56AD03A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12315B11-2042-4ED3-81CD-19C78EE08915}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12315B11-2042-4ED3-81CD-19C78EE08915}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12315B11-2042-4ED3-81CD-19C78EE08915}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12315B11-2042-4ED3-81CD-19C78EE08915}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,13 @@
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\bin\Release\WpfApplication1hjy.exe.config
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\bin\Release\WpfApplication1hjy.exe
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\bin\Release\WpfApplication1hjy.pdb
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Release\MainWindow.baml
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Release\MainWindow.g.cs
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Release\App.g.cs
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Release\WpfApplication1hjy_MarkupCompile.cache
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Release\WpfApplication1hjy.g.resources
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Release\WpfApplication1hjy.Properties.Resources.resources
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Release\WpfApplication1hjy.csproj.GenerateResource.Cache
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Release\WpfApplication1hjy.exe
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Release\WpfApplication1hjy.pdb
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Release\WpfApplication1hjy.csprojResolveAssemblyReference.cache
