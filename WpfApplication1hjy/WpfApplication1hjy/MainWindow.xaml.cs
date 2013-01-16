@@ -37,8 +37,7 @@ namespace WpfApplication1hjy
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            //b.LoadFromFile("J://data.txt");
-            using (var sr = new StreamReader("C://Users/Артур/Desktop/архив котировок/Акции для WL/Акрон/Акрон_1мин.txt"))
+            using (var sr = new StreamReader("C://Users/Артур/Desktop/архив котировок/Акции для WL/Тнкбипи/Тнкбп_1мин.txt"))
             {
                 currMonth.High = Double.MinValue;
                 currMonth.Low = Double.MaxValue;
@@ -55,7 +54,6 @@ namespace WpfApplication1hjy
                     {
                         prevMonth.High = currMonth.High;
                         prevMonth.Low = currMonth.Low;
-                        //prevmonth = bar.Date.Month;
                         prevMonth.Month = bar.Date.Month;
                         prevMonth.Year = bar.Date.Year;
                         notFirstMonth = true;
@@ -72,27 +70,19 @@ namespace WpfApplication1hjy
                         {
                             double currMonthHighLow = currMonth.High - currMonth.Low; // считаем диапазон текущего месяца
                             double prevMonthHighLow = prevMonth.High - prevMonth.Low; // считаем диапазон предыдущего месяца
-                            //if (entrymonth != bar.Date.Month) // вот это добавил   *****
-                            //{
-                                if (currMonthHighLow > prevMonthHighLow)
+                            if (currMonthHighLow > prevMonthHighLow)
                                 {
-                                    //entrymonth = bar.Date.Month; // и это****
                                     wasTrade = true;
                                     entrybar = new EntryBar(bar, Math.Sign(Math.Abs(currMonth.Low - bar.Close) - Math.Abs(currMonth.High - bar.Close)));
                                     if (entrybar.Direction != prevDirection)
-                                    {   //if (энтрибарманф != бар.дэйт.манф)      энтрибарманф - это типа переменная, в которую записывается месяц последнего выведенного в эксель ентрибара
+                                    {   
                                         prevDirection = entrybar.Direction;
                                         Console.WriteLine("close:" + entrybar.Close + " dir:" + entrybar.Direction + " date:" + bar.Date); 
                                         Output.Add(entrybar);
                                     }
                                 }
-                            //}
-                            // вот тут типа можно энтрибарманф = энтрибар.дэйт.манф         хз))
                         }
                     }
-
-                    // MessageBox.Show("хуйпизда");
-                    //TODO: посчитать диапазон одного месяца,потом определить смену месяца и положить каррент манф в прев манф 
                 }
                 Console.WriteLine("Вышли из цикла");
                 Output.Save();

@@ -1,0 +1,6 @@
+C:\Users\Артур\Documents\Visual Studio 2010\Projects\HourHLbreak\WpfApplication1hjy\bin\Debug\WpfApplication1hjy.exe.config
+C:\Users\Артур\Documents\Visual Studio 2010\Projects\HourHLbreak\WpfApplication1hjy\obj\Debug\WpfApplication1hjy.exe
+C:\Users\Артур\Documents\Visual Studio 2010\Projects\HourHLbreak\WpfApplication1hjy\obj\Debug\WpfApplication1hjy.pdb
+C:\Users\Артур\Documents\GitHub\trading\10HourMining\WpfApplication1hjy\bin\Debug\WpfApplication1hjy.exe.config
+C:\Users\Артур\Documents\GitHub\trading\10HourMining\WpfApplication1hjy\obj\Debug\WpfApplication1hjy.exe
+C:\Users\Артур\Documents\GitHub\trading\10HourMining\WpfApplication1hjy\obj\Debug\WpfApplication1hjy.pdb
