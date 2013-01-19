@@ -15,23 +15,24 @@ using System.Windows.Shapes;
 using System.IO;
 namespace WpfApplication1hjy
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+   public partial class MainWindow : Window
     {
-        private Bar prevMonth;
-        private Bar currMonth;
-        bool notFirstMonth, wasTrade;
-        EntryBar entrybar;
-        int prevDirection;
-        public int entrymonth;
 
-        public MainWindow()
+        private Bar prevDay;
+        private Bar currDay;
+        private Bar prevHour;
+        private Bar currHour;
+        int prevDirection;
+        bool notFirstDay, wasTrade;
+        EntryBar entrybar;
+        
+       public MainWindow()
         {
             InitializeComponent();
-            currMonth = new Bar();
-            prevMonth = new Bar();
+            currDay = new Bar();
+            prevDay = new Bar();
+            currHour = new Bar();
+            prevHour = new Bar();
             Output.Create("test.xls");
         }
 
@@ -39,41 +40,39 @@ namespace WpfApplication1hjy
         {
             using (var sr = new StreamReader("C://Users/Артур/Desktop/архив котировок/Акции для WL/ХолМРСК/ХолМРСК.txt"))
             {
-                currMonth.High = Double.MinValue;
-                currMonth.Low = Double.MaxValue;
-                prevMonth.Month = 1;
-                prevMonth.Year = 99;
+                currDay.High = Double.MinValue;
+                currDay.Low = Double.MaxValue;
+                prevDay.Day = 1;
                 wasTrade = false;
-                notFirstMonth = false;
+                notFirstDay = false;
                 while (!sr.EndOfStream)
                 {
                     var line = sr.ReadLine();
                     var edesc = line.Split(',');
                     var bar = new Bar(edesc[0], edesc[1], edesc[2], edesc[3], edesc[4], edesc[5], edesc[6]);
-                    if (bar.Date.Month > prevMonth.Month || bar.Date.Year > prevMonth.Year)                            // проверяем изменился ли месяц
+                    if (bar.Date.Day > prevDay.Day)                            // проверяем изменился ли день
                     {
-                        prevMonth.High = currMonth.High;
-                        prevMonth.Low = currMonth.Low;
-                        prevMonth.Month = bar.Date.Month;
-                        prevMonth.Year = bar.Date.Year;
-                        notFirstMonth = true;
+                        prevDay.High = currDay.High;
+                        prevDay.Low = currDay.Low;
+                        prevDay.Day = bar.Date.Day;
+                        notFirstDay = true;
                         wasTrade = false;
-                        currMonth.High = bar.High;
-                        currMonth.Low = bar.Low;
+                        currDay.High = bar.High;
+                        currDay.Low = bar.Low;
                     }
                     else
                     {
-                        if (bar.High > currMonth.High) currMonth.High = bar.High; // отследиваем хай текущего месяца
-                        if (bar.Low < currMonth.Low) currMonth.Low = bar.Low; // отслеживаем лоу текущего месяца
+                        if (bar.High > currDay.High) currDay.High = bar.High; // отследиваем хай текущего дня
+                        if (bar.Low < currDay.Low) currDay.Low = bar.Low; // отслеживаем лоу текущего дня
 
-                        if (notFirstMonth && !wasTrade)
+                        if (notFirstDay && !wasTrade)
                         {
-                            double currMonthHighLow = currMonth.High - currMonth.Low; // считаем диапазон текущего месяца
-                            double prevMonthHighLow = prevMonth.High - prevMonth.Low; // считаем диапазон предыдущего месяца
-                            if (currMonthHighLow > prevMonthHighLow)
+                            double currDayHighLow = currDay.High - currDay.Low; // считаем диапазон текущего месяца
+                            double prevDayHighLow = prevDay.High - prevDay.Low; // считаем диапазон предыдущего месяца
+                            if ( (currDayHighLow > prevDayHighLow) && (bar.Date.TimeOfDay < new TimeSpan(18, 45, 00)) )
                                 {
                                     wasTrade = true;
-                                    entrybar = new EntryBar(bar, Math.Sign(Math.Abs(currMonth.Low - bar.Close) - Math.Abs(currMonth.High - bar.Close)));
+                                    entrybar = new EntryBar(bar, Math.Sign(Math.Abs(currDay.Low - bar.Close) - Math.Abs(currDay.High - bar.Close)));
                                     if (entrybar.Direction != prevDirection)
                                     {   
                                         prevDirection = entrybar.Direction;

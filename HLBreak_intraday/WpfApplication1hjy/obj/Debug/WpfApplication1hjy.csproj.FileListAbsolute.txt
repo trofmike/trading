@@ -44,3 +44,15 @@ C:\Users\Артур\Documents\GitHub\trading\WpfApplication1hjy\WpfApplication1h
 C:\Users\Артур\Documents\GitHub\trading\HLBreak_intraday\WpfApplication1hjy\bin\Debug\WpfApplication1hjy.exe.config
 C:\Users\Артур\Documents\GitHub\trading\HLBreak_intraday\WpfApplication1hjy\obj\Debug\WpfApplication1hjy.exe
 C:\Users\Артур\Documents\GitHub\trading\HLBreak_intraday\WpfApplication1hjy\obj\Debug\WpfApplication1hjy.pdb
+C:\Users\Артур\Documents\GitHub\trading\HLBreak_intraday\WpfApplication1hjy\bin\Debug\WpfApplication1hjy.exe
+C:\Users\Артур\Documents\GitHub\trading\HLBreak_intraday\WpfApplication1hjy\bin\Debug\WpfApplication1hjy.pdb
+C:\Users\Артур\Documents\GitHub\trading\HLBreak_intraday\WpfApplication1hjy\bin\Debug\ExcelLibrary.dll
+C:\Users\Артур\Documents\GitHub\trading\HLBreak_intraday\WpfApplication1hjy\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Артур\Documents\GitHub\trading\HLBreak_intraday\WpfApplication1hjy\obj\Debug\MainWindow.baml
+C:\Users\Артур\Documents\GitHub\trading\HLBreak_intraday\WpfApplication1hjy\obj\Debug\MainWindow.g.cs
+C:\Users\Артур\Documents\GitHub\trading\HLBreak_intraday\WpfApplication1hjy\obj\Debug\App.g.cs
+C:\Users\Артур\Documents\GitHub\trading\HLBreak_intraday\WpfApplication1hjy\obj\Debug\WpfApplication1hjy_MarkupCompile.cache
+C:\Users\Артур\Documents\GitHub\trading\HLBreak_intraday\WpfApplication1hjy\obj\Debug\WpfApplication1hjy.g.resources
+C:\Users\Артур\Documents\GitHub\trading\HLBreak_intraday\WpfApplication1hjy\obj\Debug\WpfApplication1hjy.Properties.Resources.resources
+C:\Users\Артур\Documents\GitHub\trading\HLBreak_intraday\WpfApplication1hjy\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\Артур\Documents\GitHub\trading\HLBreak_intraday\WpfApplication1hjy\obj\Debug\GenerateResource.write.1.tlog
