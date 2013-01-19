@@ -23,7 +23,7 @@ namespace WpfApplication1hjy
         private Bar prevHour;
         private Bar currHour;
         int prevDirection;
-        bool notFirstDay, wasTrade;
+        bool notFirstDay, wasTrade, notFirstHour;
         EntryBar entrybar;
         double stopPrice;
         double Max1, Max2, Max3, Max4;
@@ -45,9 +45,12 @@ namespace WpfApplication1hjy
             {
                 currDay.High = Double.MinValue;
                 currDay.Low = Double.MaxValue;
+                currHour.High = Double.MinValue;
+                currHour.Low = Double.MaxValue;
                 prevDay.Day = 1;
                 wasTrade = false;
                 notFirstDay = false;
+                notFirstHour = false;
                 while (!sr.EndOfStream)
                 {
                     var line = sr.ReadLine();
@@ -64,9 +67,25 @@ namespace WpfApplication1hjy
                         currDay.Low = bar.Low;
                     }
                     else
-                    {
+                    {   
                         if (bar.High > currDay.High) currDay.High = bar.High; // отследиваем хай текущего дня
                         if (bar.Low < currDay.Low) currDay.Low = bar.Low; // отслеживаем лоу текущего дня
+
+                        if (bar.Date.Hour > prevHour.Date.Hour)
+                        {
+                            currHour.High = bar.High;
+                            currHour.Low = bar.Low;
+                            prevHour.High = currHour.High;
+                            prevHour.Low = currHour.Low;
+                            notFirstHour = true;
+                            prevHour.Date = bar.Date;
+                        }
+                        else
+                        {
+                            if (bar.High > currHour.High) currHour.High = bar.High; // отследиваем хай текущего часа
+                            if (bar.Low < currHour.Low) currHour.Low = bar.Low; // отслеживаем лоу текущего часа
+                        }
+                        
 
                         if (wasTrade && entrybar.Direction == 1 && stopPrice > bar.Low )
                         {
