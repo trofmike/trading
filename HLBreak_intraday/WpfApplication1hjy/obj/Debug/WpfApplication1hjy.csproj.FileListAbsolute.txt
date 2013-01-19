@@ -1,0 +1,46 @@
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\bin\Debug\WpfApplication1hjy.exe.config
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\bin\Debug\WpfApplication1hjy.exe
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\bin\Debug\WpfApplication1hjy.pdb
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\WpfApplication1hjy.csprojResolveAssemblyReference.cache
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\MainWindow.baml
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\MainWindow.g.cs
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\App.g.cs
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\WpfApplication1hjy_MarkupCompile.cache
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\WpfApplication1hjy.g.resources
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\WpfApplication1hjy.Properties.Resources.resources
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\WpfApplication1hjy.csproj.GenerateResource.Cache
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\WpfApplication1hjy.exe
+c:\users\maxim\documents\visual studio 2012\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\WpfApplication1hjy.pdb
+C:\Users\Артур\Documents\Visual Studio 2010\Projects\WpfApplication1hjy\WpfApplication1hjy\bin\Debug\WpfApplication1hjy.exe.config
+C:\Users\Артур\Documents\Visual Studio 2010\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\WpfApplication1hjy.exe
+C:\Users\Артур\Documents\Visual Studio 2010\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\WpfApplication1hjy.pdb
+C:\Users\Артур\Documents\Visual Studio 2010\Projects\WpfApplication1hjy\WpfApplication1hjy\bin\Debug\WpfApplication1hjy.exe
+C:\Users\Артур\Documents\Visual Studio 2010\Projects\WpfApplication1hjy\WpfApplication1hjy\bin\Debug\WpfApplication1hjy.pdb
+C:\Users\Артур\Documents\Visual Studio 2010\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Артур\Documents\Visual Studio 2010\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\MainWindow.baml
+C:\Users\Артур\Documents\Visual Studio 2010\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\MainWindow.g.cs
+C:\Users\Артур\Documents\Visual Studio 2010\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\App.g.cs
+C:\Users\Артур\Documents\Visual Studio 2010\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\WpfApplication1hjy_MarkupCompile.cache
+C:\Users\Артур\Documents\Visual Studio 2010\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\WpfApplication1hjy.g.resources
+C:\Users\Артур\Documents\Visual Studio 2010\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\WpfApplication1hjy.Properties.Resources.resources
+C:\Users\Артур\Documents\Visual Studio 2010\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\Артур\Documents\Visual Studio 2010\Projects\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\Артур\Documents\Visual Studio 2010\Projects\WpfApplication1hjy\WpfApplication1hjy\bin\Debug\ExcelLibrary.dll
+C:\Users\Артур\Documents\GitHub\trading\WpfApplication1hjy\WpfApplication1hjy\bin\Debug\WpfApplication1hjy.exe.config
+C:\Users\Артур\Documents\GitHub\trading\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\WpfApplication1hjy.exe
+C:\Users\Артур\Documents\GitHub\trading\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\WpfApplication1hjy.pdb
+C:\Users\Артур\Documents\GitHub\trading\WpfApplication1hjy\WpfApplication1hjy\bin\Debug\WpfApplication1hjy.exe
+C:\Users\Артур\Documents\GitHub\trading\WpfApplication1hjy\WpfApplication1hjy\bin\Debug\WpfApplication1hjy.pdb
+C:\Users\Артур\Documents\GitHub\trading\WpfApplication1hjy\WpfApplication1hjy\bin\Debug\ExcelLibrary.dll
+C:\Users\Артур\Documents\GitHub\trading\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Артур\Documents\GitHub\trading\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\MainWindow.baml
+C:\Users\Артур\Documents\GitHub\trading\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\MainWindow.g.cs
+C:\Users\Артур\Documents\GitHub\trading\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\App.g.cs
+C:\Users\Артур\Documents\GitHub\trading\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\WpfApplication1hjy_MarkupCompile.cache
+C:\Users\Артур\Documents\GitHub\trading\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\WpfApplication1hjy.g.resources
+C:\Users\Артур\Documents\GitHub\trading\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\WpfApplication1hjy.Properties.Resources.resources
+C:\Users\Артур\Documents\GitHub\trading\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\Артур\Documents\GitHub\trading\WpfApplication1hjy\WpfApplication1hjy\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\Артур\Documents\GitHub\trading\HLBreak_intraday\WpfApplication1hjy\bin\Debug\WpfApplication1hjy.exe.config
+C:\Users\Артур\Documents\GitHub\trading\HLBreak_intraday\WpfApplication1hjy\obj\Debug\WpfApplication1hjy.exe
+C:\Users\Артур\Documents\GitHub\trading\HLBreak_intraday\WpfApplication1hjy\obj\Debug\WpfApplication1hjy.pdb
