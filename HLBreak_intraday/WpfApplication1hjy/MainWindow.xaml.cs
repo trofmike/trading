@@ -52,6 +52,8 @@ namespace WpfApplication1hjy
                 notFirstDay = false;
                 notFirstHour = false;
                 prevHour.Date = new DateTime(2020, 12, 12, 10, 59, 59);
+                prevDay.Month = 1; // для месяцев добавляю
+                prevDay.Year = 2009; // для лет добавляю
                 while (!sr.EndOfStream)
                 {
                     var line = sr.ReadLine();
@@ -60,7 +62,7 @@ namespace WpfApplication1hjy
 
 
 
-                    if (bar.Date.Day > prevDay.Day)                            // проверяем изменился ли день
+                    if (bar.Date.Day > prevDay.Day || bar.Date.Month > prevDay.Month || bar.Date.Year > prevDay.Year)                            // проверяем изменился ли день
                     {
                         prevDay.High = currDay.High;
                         prevDay.Low = currDay.Low;
@@ -75,6 +77,8 @@ namespace WpfApplication1hjy
                         currHour.High = bar.High;
                         currHour.Low = bar.Low;
                         prevHour.Date = bar.Date;
+                        prevDay.Month = bar.Date.Month; // для месяцев добавляю
+                        prevDay.Year = bar.Date.Year; // для лет добавляю
                     }
                     else
                     {
@@ -125,7 +129,7 @@ namespace WpfApplication1hjy
                             Output.Add(entrybar);
 
                         }
-                        if (wasTrade && entrybar.Direction == -1 && stopPrice > bar.Low)
+                        if (wasTrade && entrybar.Direction == -1 && stopPrice < bar.Low)
                         {
                             entrybar.FixPrice = stopPrice;
                             wasTrade = false;
@@ -153,7 +157,7 @@ namespace WpfApplication1hjy
 
                             if (entrybar.Direction == 1)
                             {
-                                switch (entrybar.entryBar.Date.Hour - bar.Date.Hour)
+                                switch ( -entrybar.entryBar.Date.Hour + bar.Date.Hour)
                                 {
                                     case 1:
                                         entrybar.Max1 = prevHour.High - entrybar.EntryPrice;
@@ -171,19 +175,19 @@ namespace WpfApplication1hjy
                             }
                             else
                             {
-                                switch (entrybar.entryBar.Date.Hour - bar.Date.Hour)
+                                switch ( -entrybar.entryBar.Date.Hour + bar.Date.Hour)
                                 {
                                     case 1:
                                         entrybar.Max1 = -prevHour.Low + entrybar.EntryPrice;
                                         break;
                                     case 2:
-                                        entrybar.Max1 = -prevHour.Low + entrybar.EntryPrice;
+                                        entrybar.Max2 = -prevHour.Low + entrybar.EntryPrice;
                                         break;
                                     case 3:
-                                        entrybar.Max1 = -prevHour.Low + entrybar.EntryPrice;
+                                        entrybar.Max3 = -prevHour.Low + entrybar.EntryPrice;
                                         break;
                                     case 4:
-                                        entrybar.Max1 = -prevHour.Low + entrybar.EntryPrice;
+                                        entrybar.Max4 = -prevHour.Low + entrybar.EntryPrice;
                                         break;
                                 }
                             }
