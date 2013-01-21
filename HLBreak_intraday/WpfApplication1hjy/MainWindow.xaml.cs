@@ -84,6 +84,89 @@ namespace WpfApplication1hjy
                     {
                         if (bar.High > currDay.High) currDay.High = bar.High; // отследиваем хай текущего дня
                         if (bar.Low < currDay.Low) currDay.Low = bar.Low; // отслеживаем лоу текущего дня
+                        if (wasTrade && (entrybar.entryBar.Date.Hour < bar.Date.Hour))
+                        {
+
+                            if (entrybar.Direction == 1)
+                            {
+                                switch (-entrybar.entryBar.Date.Hour + bar.Date.Hour)
+                                {
+                                    case 1:
+                                        entrybar.Max1 = prevHour.High - entrybar.EntryPrice;
+                                        break;
+                                    case 2:
+                                        entrybar.Max2 = prevHour.High - entrybar.EntryPrice;
+                                        stopPrice = prevHour.Low - 10;
+                                        break;
+                                    case 3:
+                                        entrybar.Max3 = prevHour.High - entrybar.EntryPrice;
+                                        stopPrice = prevHour.Low - 10;
+                                        break;
+                                    case 4:
+                                        entrybar.Max4 = prevHour.High - entrybar.EntryPrice;
+                                        stopPrice = prevHour.Low - 10;
+                                        break;
+                                    case 5:
+                                        stopPrice = prevHour.Low - 10;
+                                        break;
+                                    case 6:
+                                        stopPrice = prevHour.Low - 10;
+                                        break;
+                                    case 7:
+                                        stopPrice = prevHour.Low - 10;
+                                        break;
+                                    case 8:
+                                        stopPrice = prevHour.Low - 10;
+                                        break;
+                                    case 9:
+                                        stopPrice = prevHour.Low - 10;
+                                        break;
+                                    case 10:
+                                        stopPrice = prevHour.Low - 10;
+                                        break;
+                                }
+                            }
+                            else
+                            {
+                                switch (-entrybar.entryBar.Date.Hour + bar.Date.Hour)
+                                {
+                                    case 1:
+                                        entrybar.Max1 = -prevHour.Low + entrybar.EntryPrice;
+                                        stopPrice = prevHour.High + 10;
+                                        break;
+                                    case 2:
+                                        entrybar.Max2 = -prevHour.Low + entrybar.EntryPrice;
+                                        stopPrice = prevHour.High + 10;
+                                        break;
+                                    case 3:
+                                        entrybar.Max3 = -prevHour.Low + entrybar.EntryPrice;
+                                        stopPrice = prevHour.High + 10;
+                                        break;
+                                    case 4:
+                                        entrybar.Max4 = -prevHour.Low + entrybar.EntryPrice;
+                                        stopPrice = prevHour.High + 10;
+                                        break;
+                                    case 5:
+                                        stopPrice = prevHour.High + 10;
+                                        break;
+                                    case 6:
+                                        stopPrice = prevHour.High + 10;
+                                        break;
+                                    case 7:
+                                        stopPrice = prevHour.High + 10;
+                                        break;
+                                    case 8:
+                                        stopPrice = prevHour.High + 10;
+                                        break;
+                                    case 9:
+                                        stopPrice = prevHour.High + 10;
+                                        break;
+                                    case 10:
+                                        stopPrice = prevHour.High + 10;
+                                        break;
+                                }
+                            }
+                        }
 
                         if (bar.Date.Hour == 23 && bar.Date.Minute == 49 && wasTrade && entrybar.FixPrice == 0)
                         {
@@ -152,46 +235,7 @@ namespace WpfApplication1hjy
                             Output.Add(entrybar);
                         }
 
-                        if (wasTrade && (entrybar.entryBar.Date.Hour < bar.Date.Hour))
-                        {
-
-                            if (entrybar.Direction == 1)
-                            {
-                                switch ( -entrybar.entryBar.Date.Hour + bar.Date.Hour)
-                                {
-                                    case 1:
-                                        entrybar.Max1 = prevHour.High - entrybar.EntryPrice;
-                                        break;
-                                    case 2:
-                                        entrybar.Max2 = prevHour.High - entrybar.EntryPrice;
-                                        break;
-                                    case 3:
-                                        entrybar.Max3 = prevHour.High - entrybar.EntryPrice;
-                                        break;
-                                    case 4:
-                                        entrybar.Max4 = prevHour.High - entrybar.EntryPrice;
-                                        break;
-                                }
-                            }
-                            else
-                            {
-                                switch ( -entrybar.entryBar.Date.Hour + bar.Date.Hour)
-                                {
-                                    case 1:
-                                        entrybar.Max1 = -prevHour.Low + entrybar.EntryPrice;
-                                        break;
-                                    case 2:
-                                        entrybar.Max2 = -prevHour.Low + entrybar.EntryPrice;
-                                        break;
-                                    case 3:
-                                        entrybar.Max3 = -prevHour.Low + entrybar.EntryPrice;
-                                        break;
-                                    case 4:
-                                        entrybar.Max4 = -prevHour.Low + entrybar.EntryPrice;
-                                        break;
-                                }
-                            }
-                        }
+                        
 
                         if (notFirstDay && !wasTrade && !wasFix)
                         {
