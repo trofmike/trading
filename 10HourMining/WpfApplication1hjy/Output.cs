@@ -35,7 +35,7 @@ namespace WpfApplication1hjy
         {
             worksheet.Cells[Count, 0] = new Cell(entry.entryBar.Date, "dd/mm/yyyy");
             worksheet.Cells[Count, 1] = new Cell(entry.entryBar.Date, "HH:mm:ss");
-            worksheet.Cells[Count, 2] = new Cell(entry.Open);
+            worksheet.Cells[Count, 2] = new Cell(entry.Close);
             Count++;
         }
     }

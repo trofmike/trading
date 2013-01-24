@@ -8,11 +8,11 @@ namespace WpfApplication1hjy
     class EntryBar
     {
         public Bar entryBar;
-        public double Open
+        public double Close
         {
             get
             {
-                return entryBar.Open;
+                return entryBar.Close;
             }
         }
 

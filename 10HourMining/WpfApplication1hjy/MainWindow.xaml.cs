@@ -28,14 +28,14 @@ namespace WpfApplication1hjy
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            using (var sr = new StreamReader("C://Users/Артур/Desktop/архив котировок/Акции для WL/склейкМинРи/Ри.txt"))
+            using (var sr = new StreamReader("C://Users/Артур/Desktop/архив котировок/Акции для WL/RiМинИнтрадей/СклИнтрадейRI(01.2009-12.2012).txt"))
             {
                 while (!sr.EndOfStream)
                 {
                     var line = sr.ReadLine();
                     var edesc = line.Split(',');
                     var bar = new Bar(edesc[0], edesc[1], edesc[2], edesc[3], edesc[4], edesc[5], edesc[6]);
-                    if (((bar.Date.Hour == 10) && (bar.Date.Minute == 0)) || ((bar.Date.Hour == 11) && (bar.Date.Minute == 0)))
+                    if (((bar.Date.Hour == 23) && (bar.Date.Minute == 49)) || ((bar.Date.Hour == 10) && (bar.Date.Minute == 59)))
                     {
                         entrybar = new EntryBar(bar);
                         Output.Add(entrybar);
