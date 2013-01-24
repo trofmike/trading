@@ -40,7 +40,7 @@ namespace WpfApplication1hjy
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            using (var sr = new StreamReader("C://Users/Артур/Desktop/архив котировок/Акции для WL/GZМинИнтрадей/Gz_min_Intraday.txt"))
+            using (var sr = new StreamReader("C://Users/Артур/Desktop/output.txt"))
             {
                 currDay.High = Double.MinValue;
                 currDay.Low = Double.MaxValue;
@@ -179,15 +179,8 @@ namespace WpfApplication1hjy
                             }
                         }
 
-                        if (bar.Date.Hour == 23 && bar.Date.Minute == 49 && wasTrade && entrybar.FixPrice == 0)
-                        {
-                            entrybar.FixPrice = bar.Close;
-                            Output.Add(entrybar);       // здесь не надо wasFix тру сделать?
-                        }
-
+                                            
                         
-
-
                         if (wasTrade && entrybar.Direction == 1 && stopPrice > bar.Low)
                         {
                             entrybar.FixPrice = stopPrice;
@@ -234,7 +227,11 @@ namespace WpfApplication1hjy
                             Output.Add(entrybar);
                         }
 
-                        
+                        if (bar.Date.Hour == 23 && bar.Date.Minute == 49 && wasTrade && entrybar.FixPrice == 0)
+                        {
+                            entrybar.FixPrice = bar.Close;
+                            Output.Add(entrybar);
+                        }
 
                         if (notFirstDay && !wasTrade && !wasFix)
                         {
@@ -245,6 +242,7 @@ namespace WpfApplication1hjy
                                 wasTrade = true;
                                 double entryPrice;
                                 double initRisk;
+                                double slipage;
                                 var direction = Math.Sign(Math.Abs(currDay.Low - bar.Close) - Math.Abs(currDay.High - bar.Close));
                                 if (direction == 1)
                                 {
@@ -258,6 +256,7 @@ namespace WpfApplication1hjy
                                     initRisk = currHour.High - entryPrice;
                                     stopPrice = currHour.High + 1; // здесь для разных инструментов надо менять тик
                                 }
+                                slipage = Math.Abs(entryPrice - bar.Close);
 
                                 entrybar = new EntryBar(
                                     bar,
@@ -269,7 +268,8 @@ namespace WpfApplication1hjy
                                     0,
                                     0,
                                     0,
-                                    0
+                                    0,
+                                    slipage
                                 );
                                 //  Console.WriteLine("close:" + entrybar.Close + " dir:" + entrybar.Direction + " date:" + bar.Date); 
 

@@ -17,6 +17,7 @@ namespace WpfApplication1hjy
         public double Max3;
         public double Max4;
         public double FixPrice;
+        public double Slipage;
 
         public double Close
         {
@@ -27,7 +28,7 @@ namespace WpfApplication1hjy
         }
 
         public EntryBar(Bar bar, int direction, double initRisk, double prevDayHighLow, double entryPrice, 
-                        int max1, int max2, int max3, int max4, double fixPrice)
+                        int max1, int max2, int max3, int max4, double fixPrice, double slipage)
         {
             entryBar = bar;
             Direction = direction;
@@ -39,6 +40,7 @@ namespace WpfApplication1hjy
             Max3 = max3;
             Max4 = max4;
             FixPrice = fixPrice;
+            Slipage = slipage;
         }
         
     }

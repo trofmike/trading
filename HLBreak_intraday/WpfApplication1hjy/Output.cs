@@ -44,6 +44,7 @@ namespace WpfApplication1hjy
             worksheet.Cells[Count, 8] = new Cell(entry.Max3);
             worksheet.Cells[Count, 9] = new Cell(entry.Max4);
             worksheet.Cells[Count, 10] = new Cell(entry.FixPrice);
+            worksheet.Cells[Count, 11] = new Cell(entry.Slipage);
             Count++;
         }
     }
