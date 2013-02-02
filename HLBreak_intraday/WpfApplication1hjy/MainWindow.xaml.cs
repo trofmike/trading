@@ -284,7 +284,7 @@ namespace WpfApplication1hjy
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            using (var sr = new StreamReader("C://Users/Артур/Desktop/архив котировок/Акции для WL/GZМинИнтрадей/Gz_min_Intraday.txt"))
+            using (var sr = new StreamReader("C://Users/Артур/Desktop/архив котировок/Акции для WL/SRМинИнтрадей/SR_min_Intraday.txt"))
             {
                 StreamWriter sw = new StreamWriter("C://Users/Артур/Desktop/output.txt");
                 while (!sr.EndOfStream)
