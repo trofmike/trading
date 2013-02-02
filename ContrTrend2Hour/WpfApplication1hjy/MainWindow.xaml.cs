@@ -99,7 +99,7 @@ namespace WpfApplication1hjy
 
                     if (bar.Date.Hour - prev2Hour.Hour == 0 && notFirst2Hour)
                     {
-                        if (prev2Hour.High > first2Hour.High && prev2Hour.Low < first2Hour.Low)
+                        if ((prev2Hour.High > first2Hour.High && prev2Hour.Low < first2Hour.Low))
                         {
                             wasTrade = true;
                             wasFix = true;
@@ -111,8 +111,8 @@ namespace WpfApplication1hjy
                             double entryPrice;
                             int direction;
                             // определям дирекшн
-                            if (curr2Hour.High > first2Hour.High) direction = 1;
-                            else direction = -1;
+                            if (prev2Hour.High > first2Hour.High) direction = -1;
+                            else direction = 1;
                             entryPrice = bar.Open;
                             if (direction == 1) stopPrice = prev2Hour.Low - (prev2Hour.High - prev2Hour.Low) / 2;
                             else                stopPrice = prev2Hour.High + (prev2Hour.High - prev2Hour.Low) / 2;
