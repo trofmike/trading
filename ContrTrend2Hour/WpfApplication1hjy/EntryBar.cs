@@ -27,20 +27,12 @@ namespace WpfApplication1hjy
             }
         }
 
-        public EntryBar(Bar bar, int direction, double initRisk, double prevDayHighLow, double entryPrice, 
-                        int max1, int max2, int max3, int max4, double fixPrice, double slipage)
+        public EntryBar(Bar bar, int direction, double entryPrice, double fixPrice)
         {
             entryBar = bar;
             Direction = direction;
-            InitRisk = initRisk;
-            PrevDayHighLow = prevDayHighLow;
             EntryPrice = entryPrice;
-            Max1 = max1;
-            Max2 = max2;
-            Max3 = max3;
-            Max4 = max4;
             FixPrice = fixPrice;
-            Slipage = slipage;
         }
         
     }

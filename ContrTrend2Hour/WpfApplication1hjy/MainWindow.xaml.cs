@@ -17,266 +17,133 @@ namespace WpfApplication1hjy
 {
     public partial class MainWindow : Window
     {
-
-        private Bar prevDay;
         private Bar currDay;
-        private Bar prevHour;
-        private Bar currHour;
-        bool notFirstDay, wasTrade, wasFix, notFirstHour;
+        private Bar prevDay;
+        private Bar prevBar;
+        private Bar prev2Hour;
+        private Bar first2Hour;
+        private Bar curr2Hour;
+        bool wasTrade, wasFix, notFirst2Hour;
         EntryBar entrybar;
         double stopPrice;
-        double Max1, Max2, Max3, Max4;
-
 
         public MainWindow()
         {
             InitializeComponent();
             currDay = new Bar();
             prevDay = new Bar();
-            currHour = new Bar();
-            prevHour = new Bar();
+            prevBar = new Bar();
+            first2Hour = new Bar();
+            curr2Hour = new Bar();
+            prev2Hour = new Bar();
             Output.Create("test.xls");
+            wasFix = false;
+            wasTrade = false;
+            notFirst2Hour = false;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            using (var sr = new StreamReader("C://Users/Артур/Desktop/output.txt"))
+            using (var sr = new StreamReader("C://Users/Артур/Downloads/SPFB.RTS_121217_130201.txt"))
             {
-                currDay.High = Double.MinValue;
-                currDay.Low = Double.MaxValue;
-                currHour.High = Double.MinValue;
-                currHour.Low = Double.MaxValue;
-                prevDay.Day = 11;
-                wasTrade = false;
-                wasFix = false;
-                notFirstDay = false;
-                notFirstHour = false;
-                prevHour.Date = new DateTime(2020, 12, 12, 10, 59, 59);
-                prevDay.Month = 1; // для месяцев добавляю
-                prevDay.Year = 2009; // для лет добавляю
+                prev2Hour.Hour = 10;
+                prevDay.Day = 17;
+                curr2Hour.High = Double.MinValue;
+                curr2Hour.Low = Double.MaxValue;
+
                 while (!sr.EndOfStream)
                 {
                     var line = sr.ReadLine();
                     var edesc = line.Split(',');
                     var bar = new Bar(edesc[0], edesc[1], edesc[2], edesc[3], edesc[4], edesc[5], edesc[6]);
-                   
-                    if (bar.Date.Hour != prevHour.Date.Hour)
-                    {
-                        prevHour.High = currHour.High;
-                        prevHour.Low = currHour.Low;
-                        currHour.High = bar.High;
-                        currHour.Low = bar.Low;
-                        prevHour.Date = bar.Date;
-                    }
-                    else
-                    {
-                        if (bar.High > currHour.High) currHour.High = bar.High; // отследиваем хай текущего часа
-                        if (bar.Low < currHour.Low) currHour.Low = bar.Low; // отслеживаем лоу текущего часа
-                    }
 
-                    if (bar.Date.Day > prevDay.Day || bar.Date.Month > prevDay.Month || bar.Date.Year > prevDay.Year)                            // проверяем изменился ли день
+                    if (bar.Date.Day != prevDay.Day)
                     {
-                        prevDay.High = currDay.High;
-                        prevDay.Low = currDay.Low;
+                        prev2Hour.Hour = 10;
+                        curr2Hour.High = bar.High;
+                        curr2Hour.Low = bar.Low;
                         prevDay.Day = bar.Date.Day;
-                        notFirstDay = true;
+                        
+                        if (wasTrade && !wasFix) 
+                        {
+                            entrybar.FixPrice = prevBar.Close;
+                            Output.Add(entrybar);
+                        }
+
                         wasTrade = false;
                         wasFix = false;
-                        currDay.High = bar.High;
-                        currDay.Low = bar.Low;
-                        prevHour.High = currHour.High;
-                        prevHour.Low = currHour.Low;
-                        currHour.High = bar.High;
-                        currHour.Low = bar.Low;
-                        prevHour.Date = bar.Date;
-                        prevDay.Month = bar.Date.Month; // для месяцев добавляю
-                        prevDay.Year = bar.Date.Year; // для лет добавляю
+                        notFirst2Hour = false;
+                    }
+
+
+                    if (bar.Date.Hour - prev2Hour.Hour == 2 )
+                    {
+                        if (bar.Date.Hour < 13 && bar.Date.Minute == 0) 
+                        {
+                            first2Hour.High = curr2Hour.High;
+                            first2Hour.Low = curr2Hour.Low;
+                            notFirst2Hour = true;
+                        }
+                        prev2Hour.High = curr2Hour.High;
+                        prev2Hour.Low = curr2Hour.Low;
+                        curr2Hour.High = bar.High;
+                        curr2Hour.Low = bar.Low;
+                        prev2Hour.Hour = bar.Date.Hour;
                     }
                     else
                     {
-                        if (bar.High > currDay.High) currDay.High = bar.High; // отследиваем хай текущего дня
-                        if (bar.Low < currDay.Low) currDay.Low = bar.Low; // отслеживаем лоу текущего дня
-                        if (wasTrade && (entrybar.entryBar.Date.Hour < bar.Date.Hour))
-                        {
+                        prevBar = bar;
+                        if (bar.High > curr2Hour.High) curr2Hour.High = bar.High; // отследиваем хай текущих 2 часов
+                        if (bar.Low < curr2Hour.Low) curr2Hour.Low = bar.Low; // отслеживаем лоу текущих 2 часов
+                    }
 
-                            if (entrybar.Direction == 1)
-                            {
-                                switch (-entrybar.entryBar.Date.Hour + bar.Date.Hour)
-                                {
-                                    case 1:
-                                        entrybar.Max1 = prevHour.High - entrybar.EntryPrice;
-                                        break;
-                                    case 2:
-                                        entrybar.Max2 = prevHour.High - entrybar.EntryPrice;
-                                        stopPrice = prevHour.Low - 1; // здесь для разных инструментов надо менять тик
-                                        break;
-                                    case 3:
-                                        entrybar.Max3 = prevHour.High - entrybar.EntryPrice;
-                                        stopPrice = prevHour.Low - 1; // здесь для разных инструментов надо менять тик
-                                        break;
-                                    case 4:
-                                        entrybar.Max4 = prevHour.High - entrybar.EntryPrice;
-                                        stopPrice = prevHour.Low - 1; // здесь для разных инструментов надо менять тик
-                                        break;
-                                    case 5:
-                                        stopPrice = prevHour.Low - 1;  // здесь для разных инструментов надо менять тик
-                                        break;
-                                    case 6:
-                                        stopPrice = prevHour.Low - 1; // здесь для разных инструментов надо менять тик
-                                        break;
-                                    case 7:
-                                        stopPrice = prevHour.Low - 1; // здесь для разных инструментов надо менять тик
-                                        break;
-                                    case 8:
-                                        stopPrice = prevHour.Low - 1; // здесь для разных инструментов надо менять тик
-                                        break;
-                                    case 9:
-                                        stopPrice = prevHour.Low - 1; // здесь для разных инструментов надо менять тик
-                                        break;
-                                    case 10:
-                                        stopPrice = prevHour.Low - 1; // здесь для разных инструментов надо менять тик
-                                        break;
-                                }
-                            }
-                            else
-                            {
-                                switch (-entrybar.entryBar.Date.Hour + bar.Date.Hour)
-                                {
-                                    case 1:
-                                        entrybar.Max1 = -prevHour.Low + entrybar.EntryPrice;
-                                        break;
-                                    case 2:
-                                        entrybar.Max2 = -prevHour.Low + entrybar.EntryPrice;
-                                        stopPrice = prevHour.High + 1;  // здесь для разных инструментов надо менять тик
-                                        break;
-                                    case 3:
-                                        entrybar.Max3 = -prevHour.Low + entrybar.EntryPrice;
-                                        stopPrice = prevHour.High + 1;  // здесь для разных инструментов надо менять тик
-                                        break;
-                                    case 4:
-                                        entrybar.Max4 = -prevHour.Low + entrybar.EntryPrice;
-                                        stopPrice = prevHour.High + 1;  // здесь для разных инструментов надо менять тик
-                                        break;
-                                    case 5:
-                                        stopPrice = prevHour.High + 1;  // здесь для разных инструментов надо менять тик
-                                        break;
-                                    case 6:
-                                        stopPrice = prevHour.High + 1;  // здесь для разных инструментов надо менять тик
-                                        break;
-                                    case 7:
-                                        stopPrice = prevHour.High + 1;  // здесь для разных инструментов надо менять тик
-                                        break;
-                                    case 8:
-                                        stopPrice = prevHour.High + 1;  // здесь для разных инструментов надо менять тик
-                                        break;
-                                    case 9:
-                                        stopPrice = prevHour.High + 1;  // здесь для разных инструментов надо менять тик
-                                        break;
-                                    case 10:
-                                        stopPrice = prevHour.High + 1;  // здесь для разных инструментов надо менять тик
-                                        break;
-                                }
-                            }
-                        }
-
-                                            
-                        
-                        if (wasTrade && entrybar.Direction == 1 && stopPrice > bar.Low)
+                    if (bar.Date.Hour - prev2Hour.Hour == 0 && notFirst2Hour)
+                    {
+                        if (prev2Hour.High > first2Hour.High && prev2Hour.Low < first2Hour.Low)
                         {
-                            entrybar.FixPrice = stopPrice;
-                            wasTrade = false;
+                            wasTrade = true;
                             wasFix = true;
-                            switch (entrybar.entryBar.Date.Hour - bar.Date.Hour)
+                        }
+                        // чтоб тока в одну сторону хай или лоу превышался
+                        if ((prev2Hour.High > first2Hour.High || prev2Hour.Low < first2Hour.Low) && !(prev2Hour.High > first2Hour.High && prev2Hour.Low < first2Hour.Low) && !wasTrade)
+                        {
+                            wasTrade = true;
+                            double entryPrice;
+                            int direction;
+                            // определям дирекшн
+                            if (curr2Hour.High > first2Hour.High) direction = 1;
+                            else direction = -1;
+                            entryPrice = bar.Open;
+                            if (direction == 1) stopPrice = prev2Hour.Low - (prev2Hour.High - prev2Hour.Low) / 2;
+                            else                stopPrice = prev2Hour.High + (prev2Hour.High - prev2Hour.Low) / 2;
+
+                            entrybar = new EntryBar(bar, direction, entryPrice, 0);
+                        }
+                    }
+                    if (wasTrade && !wasFix)
+                    {
+                        if (entrybar.Direction == 1)
+                        {
+                            if (bar.Low < stopPrice)
                             {
-                                case 0:
-                                    entrybar.Max1 = currHour.High - entrybar.EntryPrice;
-                                    break;
-                                case 1:
-                                    entrybar.Max2  = currHour.High - entrybar.EntryPrice;
-                                    break;
-                                case 2:
-                                    entrybar.Max3 = currHour.High - entrybar.EntryPrice;
-                                    break;
-                                case 3:
-                                    entrybar.Max4 = currHour.High - entrybar.EntryPrice;
-                                    break;
+                                entrybar.FixPrice = stopPrice;
+                                wasFix = true;
+                                Output.Add(entrybar);
                             }
-                            Output.Add(entrybar);
-
                         }
-                        if (wasTrade && entrybar.Direction == -1 && stopPrice < bar.High)
+                        else
                         {
-                            entrybar.FixPrice = stopPrice;
-                            wasTrade = false;
-                            wasFix = true;
-                            switch (entrybar.entryBar.Date.Hour - bar.Date.Hour)
+                            if (bar.High > stopPrice)
                             {
-                                case 0:
-                                    entrybar.Max1 = -currHour.Low + entrybar.EntryPrice;
-                                    break;
-                                case 1:
-                                    entrybar.Max2 = -currHour.Low + entrybar.EntryPrice;
-                                    break;
-                                case 2:
-                                    entrybar.Max3 = -currHour.Low + entrybar.EntryPrice;
-                                    break;
-                                case 3:
-                                    entrybar.Max4 = -currHour.Low + entrybar.EntryPrice;
-                                    break;
-                            }
-                            Output.Add(entrybar);
-                        }
-
-                        if (bar.Date.Hour == 23 && bar.Date.Minute == 49 && wasTrade && entrybar.FixPrice == 0)
-                        {
-                            entrybar.FixPrice = bar.Close;
-                            Output.Add(entrybar);
-                        }
-
-                        if (notFirstDay && !wasTrade && !wasFix)
-                        {
-                            double currDayHighLow = currDay.High - currDay.Low; // считаем диапазон текущего месяца
-                            double prevDayHighLow = prevDay.High - prevDay.Low; // считаем диапазон предыдущего месяца
-                            if ((currDayHighLow > prevDayHighLow) && (bar.Date.TimeOfDay < new TimeSpan(18, 45, 00)))
-                            {
-                                wasTrade = true;
-                                double entryPrice;
-                                double initRisk;
-                                double slipage;
-                                var direction = Math.Sign(Math.Abs(currDay.Low - bar.Close) - Math.Abs(currDay.High - bar.Close));
-                                if (direction == 1)
-                                {
-                                    entryPrice = currDay.Low + prevDayHighLow + 1;  // здесь для разных инструментов надо менять тик
-                                    initRisk = entryPrice - currHour.Low;
-                                    stopPrice = currHour.Low - 1;  // здесь для разных инструментов надо менять тик
-                                }
-                                else
-                                {
-                                    entryPrice = currDay.High - prevDayHighLow - 1; // здесь для разных инструментов надо менять тик
-                                    initRisk = currHour.High - entryPrice;
-                                    stopPrice = currHour.High + 1; // здесь для разных инструментов надо менять тик
-                                }
-                                slipage = Math.Abs(entryPrice - bar.Close);
-
-                                entrybar = new EntryBar(
-                                    bar,
-                                    direction,
-                                    initRisk,
-                                    prevDayHighLow,
-                                    entryPrice,
-                                    0,
-                                    0,
-                                    0,
-                                    0,
-                                    0,
-                                    slipage
-                                );
-                                //  Console.WriteLine("close:" + entrybar.Close + " dir:" + entrybar.Direction + " date:" + bar.Date); 
-
+                                entrybar.FixPrice = stopPrice;
+                                wasFix = true;
+                                Output.Add(entrybar);
                             }
                         }
                     }
+
                 }
+
             }
             Console.WriteLine("Вышли из цикла");
             Output.Save();

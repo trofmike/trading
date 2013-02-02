@@ -35,16 +35,9 @@ namespace WpfApplication1hjy
         {
             worksheet.Cells[Count, 0] = new Cell(entry.entryBar.Date, "dd/mm/yyyy");
             worksheet.Cells[Count, 1] = new Cell(entry.entryBar.Date, "HH:mm:ss");
-            worksheet.Cells[Count, 2] = new Cell(entry.InitRisk);
-            worksheet.Cells[Count, 3] = new Cell(entry.PrevDayHighLow);
-            worksheet.Cells[Count, 4] = new Cell(entry.EntryPrice);
-            worksheet.Cells[Count, 5] = new Cell(entry.Direction);
-            worksheet.Cells[Count, 6] = new Cell(entry.Max1);
-            worksheet.Cells[Count, 7] = new Cell(entry.Max2);
-            worksheet.Cells[Count, 8] = new Cell(entry.Max3);
-            worksheet.Cells[Count, 9] = new Cell(entry.Max4);
-            worksheet.Cells[Count, 10] = new Cell(entry.FixPrice);
-            worksheet.Cells[Count, 11] = new Cell(entry.Slipage);
+            worksheet.Cells[Count, 2] = new Cell(entry.EntryPrice);
+            worksheet.Cells[Count, 3] = new Cell(entry.Direction);
+            worksheet.Cells[Count, 4] = new Cell(entry.FixPrice);
             Count++;
         }
     }

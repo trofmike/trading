@@ -10,6 +10,7 @@ namespace WpfApplication1hjy
     class Bar
     {
         public DateTime Date;
+        public int Hour;
         public int Month;
         public int Day;
         public int Year;
@@ -47,6 +48,8 @@ namespace WpfApplication1hjy
             Day = day;
 
             int hour = int.Parse(time.Substring(0, 2));
+            Hour = hour;
+
             int min = int.Parse(time.Substring(2, 2));
             int sec = int.Parse(time.Substring(4, 2));
 
