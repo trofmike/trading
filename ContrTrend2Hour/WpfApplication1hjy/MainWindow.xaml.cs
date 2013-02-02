@@ -99,13 +99,13 @@ namespace WpfApplication1hjy
 
                     if (bar.Date.Hour - prev2Hour.Hour == 0 && notFirst2Hour)
                     {
-                        if ((prev2Hour.High > first2Hour.High && prev2Hour.Low < first2Hour.Low))
-                        {
-                            wasTrade = true;
-                            wasFix = true;
-                        }
+                       //if ((prev2Hour.High > first2Hour.High && prev2Hour.Low < first2Hour.Low))     УБИРАЮ ЭТУ ЧАСТЬ, ГДЕ ОДНОВРЕМЕННО ЭКСТРЕМУМЫ РИСУЮТСЯ
+                       //{
+                       //    wasTrade = true;
+                       //    wasFix = true;
+                       //}
                         // чтоб тока в одну сторону хай или лоу превышался
-                        if ((prev2Hour.High > first2Hour.High || prev2Hour.Low < first2Hour.Low) && !(prev2Hour.High > first2Hour.High && prev2Hour.Low < first2Hour.Low) && !wasTrade)
+                        if ((prev2Hour.High > first2Hour.High || prev2Hour.Low < first2Hour.Low) && !wasTrade) // УБРАЛ УСЛОВИЕ, ГДЕ ОДНОВРЕМЕННО ЭКСТРЕМУМЫ РИСУЮТСЯ
                         {
                             wasTrade = true;
                             double entryPrice;
@@ -113,6 +113,11 @@ namespace WpfApplication1hjy
                             // определям дирекшн
                             if (prev2Hour.High > first2Hour.High) direction = -1;
                             else direction = 1;
+                            if ((prev2Hour.High > first2Hour.High && prev2Hour.Low < first2Hour.Low))
+                            {
+                                if (Math.Abs(bar.Open - first2Hour.High) > Math.Abs(bar.Open - first2Hour.Low)) direction = 1;
+                                else direction = -1;
+                            }
                             entryPrice = bar.Open;
                             if (direction == 1) stopPrice = prev2Hour.Low - (prev2Hour.High - prev2Hour.Low) / 2;
                             else                stopPrice = prev2Hour.High + (prev2Hour.High - prev2Hour.Low) / 2;
